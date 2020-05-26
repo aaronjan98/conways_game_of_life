@@ -117,9 +117,37 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../src/app.js":[function(require,module,exports) {
-console.log('It works.');
-},{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+})({"../src/components/Matrix.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+// var m = new Matrix(50, 40)
+function Matrix(rows, cols) {
+  console.log('hi');
+  this.rows = rows;
+  this.cols = cols;
+}
+
+var _default = Matrix;
+exports.default = _default;
+},{}],"../src/App.js":[function(require,module,exports) {
+"use strict";
+
+var _Matrix = _interopRequireDefault(require("./components/Matrix.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var App = function App() {
+  document.getElementsByClassName('container').innerHTML = (0, _Matrix.default)();
+}; // Init App
+
+
+App();
+},{"./components/Matrix.js":"../src/components/Matrix.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -323,5 +351,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","../src/app.js"], null)
-//# sourceMappingURL=/app.581aa3f0.js.map
+},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","../src/App.js"], null)
+//# sourceMappingURL=/App.7aaa0588.js.map
