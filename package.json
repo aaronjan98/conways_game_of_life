@@ -4,7 +4,8 @@
   "description": "John Conway's Game of Life is a very famous cellular automaton made up of a grid of cells that follow a simple set of rules from which complex behaviors can emerge.",
   "main": "index.js",
   "scripts": {
-    "dev": "rm -f ./development && rm -f ./.cache && parcel public/index.html --out-dir development -p 3000"
+    "dev": "rm -f ./development && rm -f ./.cache && parcel public/index.html --out-dir development -p 3000",
+    "build": "parcel build public/index.html --out-dir dist --public-url ./"
   },
   "repository": {
     "type": "git",
