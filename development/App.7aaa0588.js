@@ -130,8 +130,19 @@ function Matrix(rows, cols) {
   console.log('hi');
   this.rows = rows;
   this.cols = cols;
+  this.matrix = [];
+
+  for (var i = 0; i < this.rows; i++) {
+    this.matrix[i] = [];
+
+    for (var j = 0; j < this.cols; j++) {
+      this.matrix[i][j] = 0;
+    }
+  }
 }
 
+var m = new Matrix(2, 3);
+console.log('m', m);
 var _default = Matrix;
 exports.default = _default;
 },{}],"../src/App.js":[function(require,module,exports) {
@@ -142,7 +153,7 @@ var _Matrix = _interopRequireDefault(require("./components/Matrix.js"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
-  document.getElementsByClassName('container').innerHTML = (0, _Matrix.default)();
+  document.getElementById('root').innerHTML = (0, _Matrix.default)();
 }; // Init App
 
 

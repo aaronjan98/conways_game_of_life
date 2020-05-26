@@ -1,7 +1,7 @@
 import Matrix from './components/Matrix.js';
 
 const App = () => {
-    document.getElementsByClassName('container').innerHTML = Matrix();
+    document.getElementById('root').innerHTML = Matrix();
 }
 
 // Init App
