@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/aaronjan98/conways_game_of_life/issues"
   },
-  "homepage": "https://github.com/aaronjan98/conways_game_of_life#readme"
+  "homepage": "https://github.com/aaronjan98/conways_game_of_life#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  }
 }
