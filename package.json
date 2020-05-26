@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/aaronjan98/conways_game_of_life#readme",
   "devDependencies": {
+    "@babel/core": "^7.9.6",
     "parcel-bundler": "^1.12.4"
   }
 }
