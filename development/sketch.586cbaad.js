@@ -104572,11 +104572,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var grid;
 var cols;
 var rows;
-var resolution = 20;
+var resolution = 10;
 
 var s = function s(sketch) {
   sketch.setup = function () {
-    sketch.createCanvas(600, 400);
+    sketch.createCanvas(window.screen.width, window.screen.height);
     cols = sketch.width / resolution;
     rows = sketch.height / resolution;
     grid = new _Matrix.default(cols, rows);
@@ -104591,9 +104591,7 @@ var s = function s(sketch) {
   };
 
   sketch.draw = function () {
-    sketch.background(0); // creating another matrix that represents the new/next generation
-
-    var next = new _Matrix.default(cols, rows);
+    sketch.background(0);
 
     for (var i = 0; i < cols; i++) {
       for (var j = 0; j < rows; j++) {
@@ -104606,9 +104604,45 @@ var s = function s(sketch) {
           sketch.rect(x, y, resolution - 1, resolution - 1);
         }
       }
+    } // creating another matrix that represents the new/next generation
+
+
+    var next = new _Matrix.default(cols, rows); // compute next based on grid
+
+    for (var _i = 0; _i < cols; _i++) {
+      for (var _j = 0; _j < rows; _j++) {
+        var state = grid[_i][_j]; // count nearby cells
+
+        var sum = 0;
+        var neighbors = countNeighbors(grid, _i, _j); // if there are 3 neighbors, the cell will become alive
+
+        if (state == 0 && neighbors == 3) {
+          next[_i][_j] = 1;
+        } // if the cell is alive and there are less than 2 or more than 3 neighbors, the cell dies
+        else if (state == 1 && (neighbors < 2 || neighbors > 3)) {
+            next[_i][_j] = 0;
+          } else next[_i][_j] = state;
+      }
     }
+
+    grid = next;
   };
 };
+
+function countNeighbors(grid, x, y) {
+  var sum = 0;
+
+  for (var i = -1; i < 2; i++) {
+    for (var j = -1; j < 2; j++) {
+      var col = (x + i + cols) % cols;
+      var row = (y + j + rows) % rows;
+      sum += grid[col][row];
+    }
+  }
+
+  sum -= grid[x][y];
+  return sum;
+}
 
 var myP5 = new _p.default(s);
 },{"../../libraries/p5":"../libraries/p5.js","./Matrix.js":"../src/components/Matrix.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
