@@ -1,11 +1,11 @@
 import p5 from '../../libraries/p5';
 
-let cols = 10;
-let rows = 10;
+let cols = 50;
+let rows = 50;
 
 const s = (sketch) => {
     sketch.setup = () => {
-        sketch.createCanvas(300, 300);
+        sketch.createCanvas(1500, 700);
     };
 
     sketch.draw = () => {

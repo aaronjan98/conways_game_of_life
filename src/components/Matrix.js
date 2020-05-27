@@ -12,8 +12,8 @@ function Matrix(rows, cols) {
     }
 }
 
-var m = new Matrix(5, 3);
-console.table(m.matrix);
+// var m = new Matrix(50, 50);
+// console.table(m.matrix);
 
 
 export default Matrix;

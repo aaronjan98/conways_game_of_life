@@ -104541,12 +104541,12 @@ var _p = _interopRequireDefault(require("../../libraries/p5"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var cols = 10;
-var rows = 10;
+var cols = 50;
+var rows = 50;
 
 var s = function s(sketch) {
   sketch.setup = function () {
-    sketch.createCanvas(300, 300);
+    sketch.createCanvas(1500, 700);
   };
 
   sketch.draw = function () {

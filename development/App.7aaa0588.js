@@ -137,26 +137,29 @@ function Matrix(rows, cols) {
       this.matrix[i][j] = 0;
     }
   }
-}
+} // var m = new Matrix(50, 50);
+// console.table(m.matrix);
 
-var m = new Matrix(5, 3);
-console.table(m.matrix);
+
 var _default = Matrix;
 exports.default = _default;
 },{}],"../src/App.js":[function(require,module,exports) {
 "use strict";
 
-var _Matrix = _interopRequireDefault(require("./components/Matrix"));
+var _Matrix = _interopRequireDefault(require("./components/Matrix.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = function app() {
+  // document.getElementById('app').innerHTML = Matrix();
   document.getElementById('app').appendChild((0, _Matrix.default)());
-}; // Load app
+};
 
+var n = new _Matrix.default(5, 3);
+console.table(n.matrix); // Load app
 
 app();
-},{"./components/Matrix":"../src/components/Matrix.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./components/Matrix.js":"../src/components/Matrix.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
