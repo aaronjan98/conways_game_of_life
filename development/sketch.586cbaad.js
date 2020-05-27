@@ -104534,38 +104534,84 @@ function _interopRequireDefault2(obj) { return obj && obj.__esModule ? obj : { d
     }]
   }, {}, [38])(38);
 });
-},{"@babel/runtime-corejs2/core-js/number/is-finite":"../node_modules/@babel/runtime-corejs2/core-js/number/is-finite.js","@babel/runtime-corejs2/core-js/object/assign":"../node_modules/@babel/runtime-corejs2/core-js/object/assign.js","@babel/runtime-corejs2/core-js/reflect/construct":"../node_modules/@babel/runtime-corejs2/core-js/reflect/construct.js","@babel/runtime-corejs2/core-js/map":"../node_modules/@babel/runtime-corejs2/core-js/map.js","@babel/runtime-corejs2/core-js/object/get-own-property-names":"../node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-names.js","@babel/runtime-corejs2/core-js/json/stringify":"../node_modules/@babel/runtime-corejs2/core-js/json/stringify.js","@babel/runtime-corejs2/core-js/object/prevent-extensions":"../node_modules/@babel/runtime-corejs2/core-js/object/prevent-extensions.js","@babel/runtime-corejs2/core-js/object/freeze":"../node_modules/@babel/runtime-corejs2/core-js/object/freeze.js","@babel/runtime-corejs2/core-js/weak-map":"../node_modules/@babel/runtime-corejs2/core-js/weak-map.js","@babel/runtime-corejs2/core-js/parse-float":"../node_modules/@babel/runtime-corejs2/core-js/parse-float.js","@babel/runtime-corejs2/core-js/promise":"../node_modules/@babel/runtime-corejs2/core-js/promise.js","@babel/runtime-corejs2/core-js/date/now":"../node_modules/@babel/runtime-corejs2/core-js/date/now.js","@babel/runtime-corejs2/core-js/parse-int":"../node_modules/@babel/runtime-corejs2/core-js/parse-int.js","@babel/runtime-corejs2/core-js/symbol/to-primitive":"../node_modules/@babel/runtime-corejs2/core-js/symbol/to-primitive.js","@babel/runtime-corejs2/core-js/symbol/species":"../node_modules/@babel/runtime-corejs2/core-js/symbol/species.js","@babel/runtime-corejs2/core-js/symbol/for":"../node_modules/@babel/runtime-corejs2/core-js/symbol/for.js","@babel/runtime-corejs2/core-js/symbol/iterator":"../node_modules/@babel/runtime-corejs2/core-js/symbol/iterator.js","@babel/runtime-corejs2/core-js/symbol":"../node_modules/@babel/runtime-corejs2/core-js/symbol.js","@babel/runtime-corejs2/core-js/object/get-own-property-descriptor":"../node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js","@babel/runtime-corejs2/core-js/object/get-own-property-symbols":"../node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js","@babel/runtime-corejs2/core-js/object/keys":"../node_modules/@babel/runtime-corejs2/core-js/object/keys.js","@babel/runtime-corejs2/core-js/get-iterator":"../node_modules/@babel/runtime-corejs2/core-js/get-iterator.js","@babel/runtime-corejs2/core-js/array/from":"../node_modules/@babel/runtime-corejs2/core-js/array/from.js","@babel/runtime-corejs2/core-js/is-iterable":"../node_modules/@babel/runtime-corejs2/core-js/is-iterable.js","@babel/runtime-corejs2/core-js/object/create":"../node_modules/@babel/runtime-corejs2/core-js/object/create.js","@babel/runtime-corejs2/core-js/object/get-prototype-of":"../node_modules/@babel/runtime-corejs2/core-js/object/get-prototype-of.js","@babel/runtime-corejs2/core-js/object/set-prototype-of":"../node_modules/@babel/runtime-corejs2/core-js/object/set-prototype-of.js","@babel/runtime-corejs2/core-js/object/define-property":"../node_modules/@babel/runtime-corejs2/core-js/object/define-property.js","@babel/runtime-corejs2/core-js/array/is-array":"../node_modules/@babel/runtime-corejs2/core-js/array/is-array.js","@babel/runtime-corejs2/helpers/typeof":"../node_modules/@babel/runtime-corejs2/helpers/typeof.js","buffer":"../node_modules/buffer/index.js","process":"../node_modules/process/browser.js"}],"../src/components/sketch.js":[function(require,module,exports) {
+},{"@babel/runtime-corejs2/core-js/number/is-finite":"../node_modules/@babel/runtime-corejs2/core-js/number/is-finite.js","@babel/runtime-corejs2/core-js/object/assign":"../node_modules/@babel/runtime-corejs2/core-js/object/assign.js","@babel/runtime-corejs2/core-js/reflect/construct":"../node_modules/@babel/runtime-corejs2/core-js/reflect/construct.js","@babel/runtime-corejs2/core-js/map":"../node_modules/@babel/runtime-corejs2/core-js/map.js","@babel/runtime-corejs2/core-js/object/get-own-property-names":"../node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-names.js","@babel/runtime-corejs2/core-js/json/stringify":"../node_modules/@babel/runtime-corejs2/core-js/json/stringify.js","@babel/runtime-corejs2/core-js/object/prevent-extensions":"../node_modules/@babel/runtime-corejs2/core-js/object/prevent-extensions.js","@babel/runtime-corejs2/core-js/object/freeze":"../node_modules/@babel/runtime-corejs2/core-js/object/freeze.js","@babel/runtime-corejs2/core-js/weak-map":"../node_modules/@babel/runtime-corejs2/core-js/weak-map.js","@babel/runtime-corejs2/core-js/parse-float":"../node_modules/@babel/runtime-corejs2/core-js/parse-float.js","@babel/runtime-corejs2/core-js/promise":"../node_modules/@babel/runtime-corejs2/core-js/promise.js","@babel/runtime-corejs2/core-js/date/now":"../node_modules/@babel/runtime-corejs2/core-js/date/now.js","@babel/runtime-corejs2/core-js/parse-int":"../node_modules/@babel/runtime-corejs2/core-js/parse-int.js","@babel/runtime-corejs2/core-js/symbol/to-primitive":"../node_modules/@babel/runtime-corejs2/core-js/symbol/to-primitive.js","@babel/runtime-corejs2/core-js/symbol/species":"../node_modules/@babel/runtime-corejs2/core-js/symbol/species.js","@babel/runtime-corejs2/core-js/symbol/for":"../node_modules/@babel/runtime-corejs2/core-js/symbol/for.js","@babel/runtime-corejs2/core-js/symbol/iterator":"../node_modules/@babel/runtime-corejs2/core-js/symbol/iterator.js","@babel/runtime-corejs2/core-js/symbol":"../node_modules/@babel/runtime-corejs2/core-js/symbol.js","@babel/runtime-corejs2/core-js/object/get-own-property-descriptor":"../node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js","@babel/runtime-corejs2/core-js/object/get-own-property-symbols":"../node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js","@babel/runtime-corejs2/core-js/object/keys":"../node_modules/@babel/runtime-corejs2/core-js/object/keys.js","@babel/runtime-corejs2/core-js/get-iterator":"../node_modules/@babel/runtime-corejs2/core-js/get-iterator.js","@babel/runtime-corejs2/core-js/array/from":"../node_modules/@babel/runtime-corejs2/core-js/array/from.js","@babel/runtime-corejs2/core-js/is-iterable":"../node_modules/@babel/runtime-corejs2/core-js/is-iterable.js","@babel/runtime-corejs2/core-js/object/create":"../node_modules/@babel/runtime-corejs2/core-js/object/create.js","@babel/runtime-corejs2/core-js/object/get-prototype-of":"../node_modules/@babel/runtime-corejs2/core-js/object/get-prototype-of.js","@babel/runtime-corejs2/core-js/object/set-prototype-of":"../node_modules/@babel/runtime-corejs2/core-js/object/set-prototype-of.js","@babel/runtime-corejs2/core-js/object/define-property":"../node_modules/@babel/runtime-corejs2/core-js/object/define-property.js","@babel/runtime-corejs2/core-js/array/is-array":"../node_modules/@babel/runtime-corejs2/core-js/array/is-array.js","@babel/runtime-corejs2/helpers/typeof":"../node_modules/@babel/runtime-corejs2/helpers/typeof.js","buffer":"../node_modules/buffer/index.js","process":"../node_modules/process/browser.js"}],"../src/components/Matrix.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function Matrix(rows, cols) {
+  this.rows = rows;
+  this.cols = cols;
+  this.matrix = [];
+
+  for (var i = 0; i < this.rows; i++) {
+    this.matrix[i] = [];
+
+    for (var j = 0; j < this.cols; j++) {
+      this.matrix[i][j] = [];
+    }
+  }
+
+  return this.matrix;
+}
+
+var _default = Matrix;
+exports.default = _default;
+},{}],"../src/components/sketch.js":[function(require,module,exports) {
 "use strict";
 
 var _p = _interopRequireDefault(require("../../libraries/p5"));
 
+var _Matrix = _interopRequireDefault(require("./Matrix.js"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var cols = 50;
-var rows = 50;
+var grid;
+var cols;
+var rows;
+var resolution = 20;
 
 var s = function s(sketch) {
   sketch.setup = function () {
-    sketch.createCanvas(1500, 700);
-  };
-
-  sketch.draw = function () {
-    sketch.background(51);
+    sketch.createCanvas(600, 400);
+    cols = sketch.width / resolution;
+    rows = sketch.height / resolution;
+    grid = new _Matrix.default(cols, rows);
 
     for (var i = 0; i < cols; i++) {
       for (var j = 0; j < rows; j++) {
-        var x = i * 30;
-        var y = j * 30;
-        sketch.stroke(0);
-        sketch.fill(255);
-        sketch.rect(x, y, 30, 30);
+        grid[i][j] = sketch.floor(sketch.random(2));
+      }
+    }
+
+    console.table(grid);
+  };
+
+  sketch.draw = function () {
+    sketch.background(0); // creating another matrix that represents the new/next generation
+
+    var next = new _Matrix.default(cols, rows);
+
+    for (var i = 0; i < cols; i++) {
+      for (var j = 0; j < rows; j++) {
+        var x = i * resolution;
+        var y = j * resolution;
+
+        if (grid[i][j] == 1) {
+          sketch.fill(255);
+          sketch.stroke(0);
+          sketch.rect(x, y, resolution - 1, resolution - 1);
+        }
       }
     }
   };
 };
 
 var myP5 = new _p.default(s);
-},{"../../libraries/p5":"../libraries/p5.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"../../libraries/p5":"../libraries/p5.js","./Matrix.js":"../src/components/Matrix.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -104593,7 +104639,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52319" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57867" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

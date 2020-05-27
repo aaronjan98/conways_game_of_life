@@ -134,12 +134,12 @@ function Matrix(rows, cols) {
     this.matrix[i] = [];
 
     for (var j = 0; j < this.cols; j++) {
-      this.matrix[i][j] = 0;
+      this.matrix[i][j] = [];
     }
   }
-} // var m = new Matrix(50, 50);
-// console.table(m.matrix);
 
+  return this.matrix;
+}
 
 var _default = Matrix;
 exports.default = _default;
@@ -153,10 +153,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var app = function app() {
   // document.getElementById('app').innerHTML = Matrix();
   document.getElementById('app').appendChild((0, _Matrix.default)());
-};
+}; // Load app
 
-var n = new _Matrix.default(5, 3);
-console.table(n.matrix); // Load app
 
 app();
 },{"./components/Matrix.js":"../src/components/Matrix.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -187,7 +185,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52319" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57867" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
