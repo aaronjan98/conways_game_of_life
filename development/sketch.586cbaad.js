@@ -104534,13 +104534,65 @@ function _interopRequireDefault2(obj) { return obj && obj.__esModule ? obj : { d
     }]
   }, {}, [38])(38);
 });
-},{"@babel/runtime-corejs2/core-js/number/is-finite":"../node_modules/@babel/runtime-corejs2/core-js/number/is-finite.js","@babel/runtime-corejs2/core-js/object/assign":"../node_modules/@babel/runtime-corejs2/core-js/object/assign.js","@babel/runtime-corejs2/core-js/reflect/construct":"../node_modules/@babel/runtime-corejs2/core-js/reflect/construct.js","@babel/runtime-corejs2/core-js/map":"../node_modules/@babel/runtime-corejs2/core-js/map.js","@babel/runtime-corejs2/core-js/object/get-own-property-names":"../node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-names.js","@babel/runtime-corejs2/core-js/json/stringify":"../node_modules/@babel/runtime-corejs2/core-js/json/stringify.js","@babel/runtime-corejs2/core-js/object/prevent-extensions":"../node_modules/@babel/runtime-corejs2/core-js/object/prevent-extensions.js","@babel/runtime-corejs2/core-js/object/freeze":"../node_modules/@babel/runtime-corejs2/core-js/object/freeze.js","@babel/runtime-corejs2/core-js/weak-map":"../node_modules/@babel/runtime-corejs2/core-js/weak-map.js","@babel/runtime-corejs2/core-js/parse-float":"../node_modules/@babel/runtime-corejs2/core-js/parse-float.js","@babel/runtime-corejs2/core-js/promise":"../node_modules/@babel/runtime-corejs2/core-js/promise.js","@babel/runtime-corejs2/core-js/date/now":"../node_modules/@babel/runtime-corejs2/core-js/date/now.js","@babel/runtime-corejs2/core-js/parse-int":"../node_modules/@babel/runtime-corejs2/core-js/parse-int.js","@babel/runtime-corejs2/core-js/symbol/to-primitive":"../node_modules/@babel/runtime-corejs2/core-js/symbol/to-primitive.js","@babel/runtime-corejs2/core-js/symbol/species":"../node_modules/@babel/runtime-corejs2/core-js/symbol/species.js","@babel/runtime-corejs2/core-js/symbol/for":"../node_modules/@babel/runtime-corejs2/core-js/symbol/for.js","@babel/runtime-corejs2/core-js/symbol/iterator":"../node_modules/@babel/runtime-corejs2/core-js/symbol/iterator.js","@babel/runtime-corejs2/core-js/symbol":"../node_modules/@babel/runtime-corejs2/core-js/symbol.js","@babel/runtime-corejs2/core-js/object/get-own-property-descriptor":"../node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js","@babel/runtime-corejs2/core-js/object/get-own-property-symbols":"../node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js","@babel/runtime-corejs2/core-js/object/keys":"../node_modules/@babel/runtime-corejs2/core-js/object/keys.js","@babel/runtime-corejs2/core-js/get-iterator":"../node_modules/@babel/runtime-corejs2/core-js/get-iterator.js","@babel/runtime-corejs2/core-js/array/from":"../node_modules/@babel/runtime-corejs2/core-js/array/from.js","@babel/runtime-corejs2/core-js/is-iterable":"../node_modules/@babel/runtime-corejs2/core-js/is-iterable.js","@babel/runtime-corejs2/core-js/object/create":"../node_modules/@babel/runtime-corejs2/core-js/object/create.js","@babel/runtime-corejs2/core-js/object/get-prototype-of":"../node_modules/@babel/runtime-corejs2/core-js/object/get-prototype-of.js","@babel/runtime-corejs2/core-js/object/set-prototype-of":"../node_modules/@babel/runtime-corejs2/core-js/object/set-prototype-of.js","@babel/runtime-corejs2/core-js/object/define-property":"../node_modules/@babel/runtime-corejs2/core-js/object/define-property.js","@babel/runtime-corejs2/core-js/array/is-array":"../node_modules/@babel/runtime-corejs2/core-js/array/is-array.js","@babel/runtime-corejs2/helpers/typeof":"../node_modules/@babel/runtime-corejs2/helpers/typeof.js","buffer":"../node_modules/buffer/index.js","process":"../node_modules/process/browser.js"}],"../src/components/Matrix.js":[function(require,module,exports) {
+},{"@babel/runtime-corejs2/core-js/number/is-finite":"../node_modules/@babel/runtime-corejs2/core-js/number/is-finite.js","@babel/runtime-corejs2/core-js/object/assign":"../node_modules/@babel/runtime-corejs2/core-js/object/assign.js","@babel/runtime-corejs2/core-js/reflect/construct":"../node_modules/@babel/runtime-corejs2/core-js/reflect/construct.js","@babel/runtime-corejs2/core-js/map":"../node_modules/@babel/runtime-corejs2/core-js/map.js","@babel/runtime-corejs2/core-js/object/get-own-property-names":"../node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-names.js","@babel/runtime-corejs2/core-js/json/stringify":"../node_modules/@babel/runtime-corejs2/core-js/json/stringify.js","@babel/runtime-corejs2/core-js/object/prevent-extensions":"../node_modules/@babel/runtime-corejs2/core-js/object/prevent-extensions.js","@babel/runtime-corejs2/core-js/object/freeze":"../node_modules/@babel/runtime-corejs2/core-js/object/freeze.js","@babel/runtime-corejs2/core-js/weak-map":"../node_modules/@babel/runtime-corejs2/core-js/weak-map.js","@babel/runtime-corejs2/core-js/parse-float":"../node_modules/@babel/runtime-corejs2/core-js/parse-float.js","@babel/runtime-corejs2/core-js/promise":"../node_modules/@babel/runtime-corejs2/core-js/promise.js","@babel/runtime-corejs2/core-js/date/now":"../node_modules/@babel/runtime-corejs2/core-js/date/now.js","@babel/runtime-corejs2/core-js/parse-int":"../node_modules/@babel/runtime-corejs2/core-js/parse-int.js","@babel/runtime-corejs2/core-js/symbol/to-primitive":"../node_modules/@babel/runtime-corejs2/core-js/symbol/to-primitive.js","@babel/runtime-corejs2/core-js/symbol/species":"../node_modules/@babel/runtime-corejs2/core-js/symbol/species.js","@babel/runtime-corejs2/core-js/symbol/for":"../node_modules/@babel/runtime-corejs2/core-js/symbol/for.js","@babel/runtime-corejs2/core-js/symbol/iterator":"../node_modules/@babel/runtime-corejs2/core-js/symbol/iterator.js","@babel/runtime-corejs2/core-js/symbol":"../node_modules/@babel/runtime-corejs2/core-js/symbol.js","@babel/runtime-corejs2/core-js/object/get-own-property-descriptor":"../node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js","@babel/runtime-corejs2/core-js/object/get-own-property-symbols":"../node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js","@babel/runtime-corejs2/core-js/object/keys":"../node_modules/@babel/runtime-corejs2/core-js/object/keys.js","@babel/runtime-corejs2/core-js/get-iterator":"../node_modules/@babel/runtime-corejs2/core-js/get-iterator.js","@babel/runtime-corejs2/core-js/array/from":"../node_modules/@babel/runtime-corejs2/core-js/array/from.js","@babel/runtime-corejs2/core-js/is-iterable":"../node_modules/@babel/runtime-corejs2/core-js/is-iterable.js","@babel/runtime-corejs2/core-js/object/create":"../node_modules/@babel/runtime-corejs2/core-js/object/create.js","@babel/runtime-corejs2/core-js/object/get-prototype-of":"../node_modules/@babel/runtime-corejs2/core-js/object/get-prototype-of.js","@babel/runtime-corejs2/core-js/object/set-prototype-of":"../node_modules/@babel/runtime-corejs2/core-js/object/set-prototype-of.js","@babel/runtime-corejs2/core-js/object/define-property":"../node_modules/@babel/runtime-corejs2/core-js/object/define-property.js","@babel/runtime-corejs2/core-js/array/is-array":"../node_modules/@babel/runtime-corejs2/core-js/array/is-array.js","@babel/runtime-corejs2/helpers/typeof":"../node_modules/@babel/runtime-corejs2/helpers/typeof.js","buffer":"../node_modules/buffer/index.js","process":"../node_modules/process/browser.js"}],"../node_modules/@babel/runtime-corejs2/helpers/classCallCheck.js":[function(require,module,exports) {
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+module.exports = _classCallCheck;
+},{}],"../node_modules/@babel/runtime-corejs2/helpers/createClass.js":[function(require,module,exports) {
+var _Object$defineProperty = require("../core-js/object/define-property");
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+
+    _Object$defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+module.exports = _createClass;
+},{"../core-js/object/define-property":"../node_modules/@babel/runtime-corejs2/core-js/object/define-property.js"}],"../src/components/Matrix.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/classCallCheck"));
+
+var _createClass2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/createClass"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Cell = /*#__PURE__*/function () {
+  function Cell() {
+    (0, _classCallCheck2.default)(this, Cell);
+    this.currentstate = Math.floor(Math.random() * 2);
+    this.total = 0;
+  }
+
+  (0, _createClass2.default)(Cell, [{
+    key: "setState",
+    value: function setState(state) {
+      this.currentstate = state;
+      this.total += state;
+    }
+  }]);
+  return Cell;
+}();
 
 function Matrix(rows, cols) {
   this.rows = rows;
@@ -104551,7 +104603,7 @@ function Matrix(rows, cols) {
     this.matrix[i] = [];
 
     for (var j = 0; j < this.cols; j++) {
-      this.matrix[i][j] = [];
+      this.matrix[i][j] = new Cell();
     }
   }
 
@@ -104560,7 +104612,7 @@ function Matrix(rows, cols) {
 
 var _default = Matrix;
 exports.default = _default;
-},{}],"../src/components/sketch.js":[function(require,module,exports) {
+},{"@babel/runtime-corejs2/helpers/classCallCheck":"../node_modules/@babel/runtime-corejs2/helpers/classCallCheck.js","@babel/runtime-corejs2/helpers/createClass":"../node_modules/@babel/runtime-corejs2/helpers/createClass.js"}],"../src/components/sketch.js":[function(require,module,exports) {
 "use strict";
 
 var _p = _interopRequireDefault(require("../../libraries/p5"));
@@ -104569,6 +104621,7 @@ var _Matrix = _interopRequireDefault(require("./Matrix.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// import countNeighbors from './countNeighbors.js';
 var grid;
 var cols;
 var rows;
@@ -104576,17 +104629,10 @@ var resolution = 10;
 
 var s = function s(sketch) {
   sketch.setup = function () {
-    sketch.createCanvas(window.screen.width, window.screen.height);
+    sketch.createCanvas(window.screen.width, 600);
     cols = sketch.width / resolution;
     rows = sketch.height / resolution;
     grid = new _Matrix.default(cols, rows);
-
-    for (var i = 0; i < cols; i++) {
-      for (var j = 0; j < rows; j++) {
-        grid[i][j] = sketch.floor(sketch.random(2));
-      }
-    }
-
     console.table(grid);
   };
 
@@ -104598,10 +104644,10 @@ var s = function s(sketch) {
         var x = i * resolution;
         var y = j * resolution;
 
-        if (grid[i][j] == 1) {
-          sketch.fill(255);
-          sketch.stroke(0);
-          sketch.rect(x, y, resolution - 1, resolution - 1);
+        if (grid[i][j].currentstate == 1) {
+          sketch.fill(255); // sketch.stroke(0)
+
+          sketch.rect(x, y, resolution, resolution);
         }
       }
     } // creating another matrix that represents the new/next generation
@@ -104611,17 +104657,17 @@ var s = function s(sketch) {
 
     for (var _i = 0; _i < cols; _i++) {
       for (var _j = 0; _j < rows; _j++) {
-        var state = grid[_i][_j]; // count nearby cells
+        var state = grid[_i][_j].currentstate; // count nearby cells
 
-        var sum = 0;
         var neighbors = countNeighbors(grid, _i, _j); // if there are 3 neighbors, the cell will become alive
 
         if (state == 0 && neighbors == 3) {
-          next[_i][_j] = 1;
+          next[_i][_j].setState(1);
         } // if the cell is alive and there are less than 2 or more than 3 neighbors, the cell dies
         else if (state == 1 && (neighbors < 2 || neighbors > 3)) {
-            next[_i][_j] = 0;
-          } else next[_i][_j] = state;
+            next[_i][_j].setState(0);
+          } // if surrounded by two or three cells, it'll stay alive
+          else next[_i][_j].setState(state);
       }
     }
 
@@ -104636,11 +104682,11 @@ function countNeighbors(grid, x, y) {
     for (var j = -1; j < 2; j++) {
       var col = (x + i + cols) % cols;
       var row = (y + j + rows) % rows;
-      sum += grid[col][row];
+      sum += grid[col][row].currentstate;
     }
   }
 
-  sum -= grid[x][y];
+  sum -= grid[x][y].currentstate;
   return sum;
 }
 
@@ -104673,7 +104719,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57867" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60006" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
