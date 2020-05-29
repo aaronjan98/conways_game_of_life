@@ -104655,10 +104655,11 @@ var s = function s(sketch) {
         sketch.noStroke();
         sketch.rect(x, y, resolution, resolution);
       }
-    } // creating another matrix that represents the new/next generation
+    } //! maybe add pause button here
+    // creating another matrix that represents the new/next generation
 
 
-    next = new _Matrix.default(cols, rows); // compute next based on grid
+    next = new _Matrix.default(cols, rows); // compute next frame based on current grid
 
     for (var _i = 0; _i < cols; _i++) {
       for (var _j = 0; _j < rows; _j++) {
@@ -104676,7 +104677,8 @@ var s = function s(sketch) {
           } // if surrounded by two or three cells, it'll stay alive
           else next[_i][_j].setState(state);
       }
-    }
+    } // swap the hidden buffer to display
+
 
     grid = next;
   };

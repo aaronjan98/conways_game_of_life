@@ -41,10 +41,11 @@ const s = (sketch) => {
                 sketch.rect(x, y, resolution, resolution);
             }
         }
+        //! maybe add pause button here
         // creating another matrix that represents the new/next generation
         next = new Matrix(cols, rows);
 
-        // compute next based on grid
+        // compute next frame based on current grid
         for (let i = 0; i < cols; i++) {
             for (let j = 0; j < rows; j++) {
                 // transfer total count from the prev gen. to this next generation
@@ -66,6 +67,7 @@ const s = (sketch) => {
                 else next[i][j].setState(state);
             }
         }
+        // swap the hidden buffer to display
         grid = next;
     };
 }
