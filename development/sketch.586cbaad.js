@@ -104621,67 +104621,86 @@ var _Matrix = _interopRequireDefault(require("./Matrix.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import countNeighbors from './countNeighbors.js';
-var grid;
-var next;
-var cols;
-var rows;
-var resolution = 10;
-var maxTotal = 0;
+var grid,
+    next,
+    cols,
+    rows,
+    resolution = 10,
+    maxTotal = 0,
+    isPaused = true,
+    genCounter = 0;
 
 var s = function s(sketch) {
   sketch.setup = function () {
-    sketch.createCanvas(window.screen.width, 600);
+    sketch.createCanvas(sketch.windowWidth, sketch.windowHeight);
     cols = sketch.width / resolution;
     rows = sketch.height / resolution;
-    grid = new _Matrix.default(cols, rows); // console.table(grid);
+    grid = new _Matrix.default(cols, rows); // buttons for extra functionality
+
+    var button = sketch.createButton('click me');
+    button.position(window.screenLeft, 19);
+    button.mousePressed(mousePressed);
+    sketch.textSize(20);
   };
 
-  sketch.draw = function () {
-    for (var i = 0; i < cols; i++) {
-      for (var j = 0; j < rows; j++) {
-        var x = i * resolution;
-        var y = j * resolution;
+  if (isPaused) {
+    sketch.draw = function () {
+      for (var i = 0; i < cols; i++) {
+        for (var j = 0; j < rows; j++) {
+          var x = i * resolution;
+          var y = j * resolution;
 
-        if (grid[i][j].total > maxTotal) {
-          maxTotal = grid[i][j].total;
-        } // normalize maxTotal and scale the hsl value accordingly
+          if (grid[i][j].total > maxTotal) {
+            maxTotal = grid[i][j].total;
+          } // normalize maxTotal and scale the hsl value accordingly
 
 
-        var normalized = grid[i][j].total / maxTotal; // normalized should be a value between 0 and 1
+          var normalized = grid[i][j].total / maxTotal; // normalized should be a value between 0 and 1
 
-        var h = (1 - normalized) * 240;
-        sketch.fill("hsl(".concat(Math.floor(h), ", 100%, 50%)"));
-        sketch.noStroke();
-        sketch.rect(x, y, resolution, resolution);
+          var h = (1 - normalized) * 240;
+          sketch.fill("hsl(".concat(Math.floor(h), ", 100%, 50%)"));
+          sketch.noStroke();
+          sketch.rect(x, y, resolution, resolution);
+        }
+      } //! maybe add pause button here
+      // creating another matrix that represents the new/next generation
+
+
+      next = new _Matrix.default(cols, rows); // compute next based on grid
+
+      for (var _i = 0; _i < cols; _i++) {
+        for (var _j = 0; _j < rows; _j++) {
+          // transfer total count from the prev gen. to this next generation
+          next[_i][_j].total = grid[_i][_j].total;
+          var state = grid[_i][_j].currentstate; // count nearby cells
+
+          var neighbors = countNeighbors(grid, _i, _j); // if there are 3 neighbors, the cell will become alive
+
+          if (state == 0 && neighbors == 3) {
+            next[_i][_j].setState(1);
+          } // if the cell is alive and there are less than 2 or more than 3 neighbors, the cell dies
+          else if (state == 1 && (neighbors < 2 || neighbors > 3)) {
+              next[_i][_j].setState(0);
+            } // if surrounded by two or three cells, it'll stay alive
+            else next[_i][_j].setState(state);
+        }
       }
-    } //! maybe add pause button here
-    // creating another matrix that represents the new/next generation
+
+      genCounter += 1; // calls to display generation
+
+      drawWords(); // swap the hidden buffer to display
+
+      grid = next;
+    };
+  } else {
+    console.log('working!');
+  } // display generation
 
 
-    next = new _Matrix.default(cols, rows); // compute next frame based on current grid
-
-    for (var _i = 0; _i < cols; _i++) {
-      for (var _j = 0; _j < rows; _j++) {
-        // transfer total count from the prev gen. to this next generation
-        next[_i][_j].total = grid[_i][_j].total;
-        var state = grid[_i][_j].currentstate; // count nearby cells
-
-        var neighbors = countNeighbors(grid, _i, _j); // if there are 3 neighbors, the cell will become alive
-
-        if (state == 0 && neighbors == 3) {
-          next[_i][_j].setState(1);
-        } // if the cell is alive and there are less than 2 or more than 3 neighbors, the cell dies
-        else if (state == 1 && (neighbors < 2 || neighbors > 3)) {
-            next[_i][_j].setState(0);
-          } // if surrounded by two or three cells, it'll stay alive
-          else next[_i][_j].setState(state);
-      }
-    } // swap the hidden buffer to display
-
-
-    grid = next;
-  };
+  function drawWords() {
+    sketch.fill(0);
+    sketch.text("Generation: ".concat(genCounter), sketch.windowWidth / 2 - 50, sketch.windowHeight - 10);
+  }
 };
 
 function countNeighbors(grid, x, y) {
@@ -104697,9 +104716,15 @@ function countNeighbors(grid, x, y) {
 
   sum -= grid[x][y].currentstate;
   return sum;
+} // Event handling
+
+
+function mousePressed() {
+  isPaused ? isPaused = false : isPaused = true;
+  console.log(isPaused);
 }
 
-var myP5 = new _p.default(s);
+new _p.default(s);
 },{"../../libraries/p5":"../libraries/p5.js","./Matrix.js":"../src/components/Matrix.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -104728,7 +104753,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63914" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61459" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
