@@ -104623,40 +104623,47 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // import countNeighbors from './countNeighbors.js';
 var grid;
+var next;
 var cols;
 var rows;
 var resolution = 10;
+var maxTotal = 0;
 
 var s = function s(sketch) {
   sketch.setup = function () {
     sketch.createCanvas(window.screen.width, 600);
     cols = sketch.width / resolution;
     rows = sketch.height / resolution;
-    grid = new _Matrix.default(cols, rows);
-    console.table(grid);
+    grid = new _Matrix.default(cols, rows); // console.table(grid);
   };
 
   sketch.draw = function () {
-    sketch.background(0);
-
     for (var i = 0; i < cols; i++) {
       for (var j = 0; j < rows; j++) {
         var x = i * resolution;
         var y = j * resolution;
 
-        if (grid[i][j].currentstate == 1) {
-          sketch.fill(255); // sketch.stroke(0)
+        if (grid[i][j].total > maxTotal) {
+          maxTotal = grid[i][j].total;
+        } // normalize maxTotal and scale the hsl value accordingly
 
-          sketch.rect(x, y, resolution, resolution);
-        }
+
+        var normalized = grid[i][j].total / maxTotal; // normalized should be a value between 0 and 1
+
+        var h = (1 - normalized) * 240;
+        sketch.fill("hsl(".concat(Math.floor(h), ", 100%, 50%)"));
+        sketch.noStroke();
+        sketch.rect(x, y, resolution, resolution);
       }
     } // creating another matrix that represents the new/next generation
 
 
-    var next = new _Matrix.default(cols, rows); // compute next based on grid
+    next = new _Matrix.default(cols, rows); // compute next based on grid
 
     for (var _i = 0; _i < cols; _i++) {
       for (var _j = 0; _j < rows; _j++) {
+        // transfer total count from the prev gen. to this next generation
+        next[_i][_j].total = grid[_i][_j].total;
         var state = grid[_i][_j].currentstate; // count nearby cells
 
         var neighbors = countNeighbors(grid, _i, _j); // if there are 3 neighbors, the cell will become alive
@@ -104719,7 +104726,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60006" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63914" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -3,9 +3,11 @@ import Matrix from './Matrix.js';
 // import countNeighbors from './countNeighbors.js';
 
 let grid;
+let next;
 let cols;
 let rows;
 let resolution = 10;
+let maxTotal = 0;
 
 const s = (sketch) => {
     sketch.setup = () => {
@@ -14,31 +16,39 @@ const s = (sketch) => {
         rows = sketch.height / resolution;
 
         grid = new Matrix(cols, rows);
-        console.table(grid);
+        // console.table(grid);
+
     };
 
     sketch.draw = () => {
-        sketch.background(0);
-
+        
         for(let i = 0; i < cols; i++){
             for(let j = 0; j < rows; j++){
                 let x = i * resolution;
                 let y = j * resolution;
                 
-                if (grid[i][j].currentstate == 1) {
-                    sketch.fill(255);
-                    // sketch.stroke(0)
-                    sketch.rect(x, y, resolution, resolution);
+                if (grid[i][j].total > maxTotal) {
+                    maxTotal = grid[i][j].total
                 }
+
+                // normalize maxTotal and scale the hsl value accordingly
+                const normalized = grid[i][j].total / maxTotal;
+                // normalized should be a value between 0 and 1
+                const h = (1 - normalized) * 240;
+                
+                sketch.fill(`hsl(${Math.floor(h)}, 100%, 50%)`);
+                sketch.noStroke();
+                sketch.rect(x, y, resolution, resolution);
             }
         }
-
         // creating another matrix that represents the new/next generation
-        let next = new Matrix(cols, rows);
+        next = new Matrix(cols, rows);
 
         // compute next based on grid
         for (let i = 0; i < cols; i++) {
             for (let j = 0; j < rows; j++) {
+                // transfer total count from the prev gen. to this next generation
+                next[i][j].total = grid[i][j].total;
                 let state = grid[i][j].currentstate;
 
                 // count nearby cells
