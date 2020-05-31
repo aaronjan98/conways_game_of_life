@@ -382,7 +382,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Cell = /*#__PURE__*/function () {
   function Cell() {
     (0, _classCallCheck2.default)(this, Cell);
-    this.currentstate = Math.floor(Math.random() * 2);
+    this.currentstate = 0;
     this.total = 0;
   }
 
@@ -392,11 +392,21 @@ var Cell = /*#__PURE__*/function () {
       this.currentstate = state;
       this.total += state;
     }
+  }, {
+    key: "randomGrid",
+    value: function randomGrid() {
+      this.currentstate = Math.floor(Math.random() * 2);
+    }
+  }, {
+    key: "clear",
+    value: function clear() {
+      this.currentstate = 0;
+    }
   }]);
   return Cell;
 }();
 
-function Matrix(rows, cols) {
+function Matrix(rows, cols, pattern) {
   this.rows = rows;
   this.cols = cols;
   this.matrix = [];
@@ -406,6 +416,14 @@ function Matrix(rows, cols) {
 
     for (var j = 0; j < this.cols; j++) {
       this.matrix[i][j] = new Cell();
+
+      if (pattern == 'clear') {
+        this.matrix[i][j].clear();
+      }
+
+      if (pattern == 'random') {
+        this.matrix[i][j].randomGrid();
+      }
     }
   }
 

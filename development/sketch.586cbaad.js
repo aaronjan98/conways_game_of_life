@@ -104580,7 +104580,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Cell = /*#__PURE__*/function () {
   function Cell() {
     (0, _classCallCheck2.default)(this, Cell);
-    this.currentstate = Math.floor(Math.random() * 2);
+    this.currentstate = 0;
     this.total = 0;
   }
 
@@ -104590,11 +104590,21 @@ var Cell = /*#__PURE__*/function () {
       this.currentstate = state;
       this.total += state;
     }
+  }, {
+    key: "randomGrid",
+    value: function randomGrid() {
+      this.currentstate = Math.floor(Math.random() * 2);
+    }
+  }, {
+    key: "clear",
+    value: function clear() {
+      this.currentstate = 0;
+    }
   }]);
   return Cell;
 }();
 
-function Matrix(rows, cols) {
+function Matrix(rows, cols, pattern) {
   this.rows = rows;
   this.cols = cols;
   this.matrix = [];
@@ -104604,6 +104614,14 @@ function Matrix(rows, cols) {
 
     for (var j = 0; j < this.cols; j++) {
       this.matrix[i][j] = new Cell();
+
+      if (pattern == 'clear') {
+        this.matrix[i][j].clear();
+      }
+
+      if (pattern == 'random') {
+        this.matrix[i][j].randomGrid();
+      }
     }
   }
 
@@ -104627,78 +104645,116 @@ var grid,
     rows,
     resolution = 10,
     maxTotal = 0,
-    isPaused = true,
-    genCounter = 0;
+    genCounter = 0,
+    counter = 0,
+    timer,
+    fr = 40,
+    interval = true,
+    button,
+    pauseBtn,
+    clearBtn;
 
 var s = function s(sketch) {
   sketch.setup = function () {
     sketch.createCanvas(sketch.windowWidth, sketch.windowHeight);
     cols = sketch.width / resolution;
     rows = sketch.height / resolution;
-    grid = new _Matrix.default(cols, rows); // buttons for extra functionality
+    createGrid(); // Button event to pause and play
 
-    var button = sketch.createButton('click me');
-    button.position(window.screenLeft, 19);
-    button.mousePressed(mousePressed);
-    sketch.textSize(20);
+    pauseBtn = sketch.createButton('pause');
+    pauseBtn.mousePressed(changeFrameRate); // Button event to clear the grid
+
+    clearBtn = sketch.createButton('clear');
+    clearBtn.mousePressed(clearGrid);
   };
 
-  if (isPaused) {
-    sketch.draw = function () {
-      for (var i = 0; i < cols; i++) {
-        for (var j = 0; j < rows; j++) {
-          var x = i * resolution;
-          var y = j * resolution;
+  function createGrid() {
+    grid = new _Matrix.default(cols, rows, 'random');
+    return grid;
+  }
 
-          if (grid[i][j].total > maxTotal) {
-            maxTotal = grid[i][j].total;
-          } // normalize maxTotal and scale the hsl value accordingly
+  function changeFrameRate() {
+    if (interval) {
+      fr = 0;
+      sketch.frameRate(fr);
+      pauseBtn.html('play');
+      interval = false;
+    } else {
+      fr = 40;
+      sketch.frameRate(fr);
+      pauseBtn.html('pause');
+      interval = true;
+    }
+  }
+
+  function clearGrid() {
+    interval = true;
+    changeFrameRate();
+    grid = new _Matrix.default(cols, rows, 'clear');
+    genCounter = 0;
+    sketch.redraw();
+  }
+
+  sketch.draw = function () {
+    for (var i = 0; i < cols; i++) {
+      for (var j = 0; j < rows; j++) {
+        var x = i * resolution;
+        var y = j * resolution;
+
+        if (grid[i][j].total > maxTotal) {
+          maxTotal = grid[i][j].total;
+        } // normalize maxTotal and scale the hsl value accordingly
 
 
-          var normalized = grid[i][j].total / maxTotal; // normalized should be a value between 0 and 1
+        var normalized = grid[i][j].total / maxTotal;
 
-          var h = (1 - normalized) * 240;
-          sketch.fill("hsl(".concat(Math.floor(h), ", 100%, 50%)"));
-          sketch.noStroke();
-          sketch.rect(x, y, resolution, resolution);
-        }
-      } //! maybe add pause button here
-      // creating another matrix that represents the new/next generation
+        if (grid[i][j].total == 0) {
+          normalized = 0;
+        } // normalized should be a value between 0 and 1
 
 
-      next = new _Matrix.default(cols, rows); // compute next based on grid
+        var h = (1 - normalized) * 240;
+        sketch.fill("hsl(".concat(Math.floor(h), ", 100%, 50%)")); // sketch.noStroke();
 
-      for (var _i = 0; _i < cols; _i++) {
-        for (var _j = 0; _j < rows; _j++) {
-          // transfer total count from the prev gen. to this next generation
-          next[_i][_j].total = grid[_i][_j].total;
-          var state = grid[_i][_j].currentstate; // count nearby cells
-
-          var neighbors = countNeighbors(grid, _i, _j); // if there are 3 neighbors, the cell will become alive
-
-          if (state == 0 && neighbors == 3) {
-            next[_i][_j].setState(1);
-          } // if the cell is alive and there are less than 2 or more than 3 neighbors, the cell dies
-          else if (state == 1 && (neighbors < 2 || neighbors > 3)) {
-              next[_i][_j].setState(0);
-            } // if surrounded by two or three cells, it'll stay alive
-            else next[_i][_j].setState(state);
-        }
+        sketch.rect(x, y, resolution, resolution);
       }
+    } // creating another matrix that represents the new/next generation
 
-      genCounter += 1; // calls to display generation
 
-      drawWords(); // swap the hidden buffer to display
+    next = new _Matrix.default(cols, rows, 'clear'); // if (genCounter == 1) {
+    //     fr = 0;
+    // }
+    // debugger
+    // compute next based on grid
 
-      grid = next;
-    };
-  } else {
-    console.log('working!');
-  } // display generation
+    for (var _i = 0; _i < cols; _i++) {
+      for (var _j = 0; _j < rows; _j++) {
+        // transfer total count from the prev gen. to this next generation
+        next[_i][_j].total = grid[_i][_j].total;
+        var state = grid[_i][_j].currentstate; // count nearby cells
+
+        var neighbors = countNeighbors(grid, _i, _j); // if there are 3 neighbors, the cell will become alive
+
+        if (state == 0 && neighbors == 3) {
+          next[_i][_j].setState(1);
+        } // if the cell is alive and there are less than 2 or more than 3 neighbors, the cell dies
+        else if (state == 1 && (neighbors < 2 || neighbors > 3)) {
+            next[_i][_j].setState(0);
+          } // if surrounded by two or three cells, it'll stay alive
+          else next[_i][_j].setState(state);
+      }
+    }
+
+    genCounter += 1; // calls to display generation
+
+    drawWords(); // swap the hidden buffer to display
+
+    grid = next;
+  }; // display generation
 
 
   function drawWords() {
-    sketch.fill(0);
+    sketch.fill(200);
     sketch.text("Generation: ".concat(genCounter), sketch.windowWidth / 2 - 50, sketch.windowHeight - 10);
   }
 };
@@ -104716,12 +104772,6 @@ function countNeighbors(grid, x, y) {
 
   sum -= grid[x][y].currentstate;
   return sum;
-} // Event handling
-
-
-function mousePressed() {
-  isPaused ? isPaused = false : isPaused = true;
-  console.log(isPaused);
 }
 
 new _p.default(s);
